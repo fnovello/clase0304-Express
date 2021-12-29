@@ -3,12 +3,23 @@ const app = express();
 const path = require('path');
 const postRouter = require('./routes/post-routes');
 
+
+const errorAppMiddleware = require('./middleware/errorAppMiddleware')
+const { registroDev, registroArchivo} = require('./middleware/registroMiddleware');
+const { appTimestampMiddleware }  = require('./middleware/appMiddleware')
 const port = 3000;
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
+
+
+app.use([registroDev,registroArchivo]);
+
+
+
+app.use(appTimestampMiddleware);
 
 app.use(postRouter);
 
@@ -24,38 +35,6 @@ app.get('/download/:param', (req,res) => {
     res.download(__dirname + "/public/123.pdf")
 })
 
-// app.get('/post', (req,res) => {
-//     res.status(200).json({message: "obtener un post"});
-// })
-
-// app.get('/post/:id/userid/:userid', (req,res) => {
-//     // console.log(typeof(req.params));
-//     console.log(req.params.id);
-//     console.log(req.params.userid);
-//     res.status(200).json(req.params);
-// })
-
-// app.get('/post', (req,res) => {
-//     console.log(req.query);
-//     // console.log(req.query.id);
-//     // console.log(req.query.userid);
-//     res.status(200).json(req.query);
-// })
-
-// app.post('/post', (req,res) => {
-//     console.log(req.body);
-//     console.log("id - " + req.body.id);
-//     console.log("userid - " + req.body.userid);
-//     res.status(200).json({message: "hola estoy en el server y soy un metodo post"});
-// })
-
-// app.put('/post', (req,res) => {
-//     res.status(200).json({message: "hola estoy en el server y soy un metodo put"});
-// })
-
-// app.delete('/post', (req,res) => {
-//     res.status(200).json({message: "hola  soy un metodo delete"});
-// })
 
 
 app.all('/all', (req,res) => {
@@ -92,6 +71,16 @@ app.route('/postgetput')
 
 
 app.get('/callbacks', [callback0,callback1,callback2] );
+
+
+app.all('*',function(req,res,next){
+  // console.log('err: ', err.stack);
+  console.log('---------ERROR-------')
+  res.status(404).json({message: "La ruta no existe " + req.originalUrl});
+})
+
+
+app.use(errorAppMiddleware);
 
 
 app.listen(port,'localhost', () => {

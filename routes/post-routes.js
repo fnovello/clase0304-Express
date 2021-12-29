@@ -1,12 +1,16 @@
 const express = require('express');
 const postRouter = express.Router(); 
+const  { postRouteMiddleware }  = require('../middleware/postRouteMiddleware');
+console.log('postRouteMiddleware: ', postRouteMiddleware);
 
+postRouter.use(postRouteMiddleware)
 
-postRouter.get('/post', (req,res) => {
-    console.log(req.query);
+postRouter.get('/post/:id', (req,res) => {
+    // var a = b ; 
+    // console.log(req.params.id);
     // console.log(req.query.id);
     // console.log(req.query.userid);
-    res.status(200).json(req.query);
+    res.status(200).json(req.params);
 })
 
 postRouter.post('/post', (req,res) => {
