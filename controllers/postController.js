@@ -1,4 +1,4 @@
-const rs = require('../service/readWrite')
+const rs = require("../service/readWrite");
 
 const createPost = (req, res) => {
   let id = getNextIdPost();
@@ -29,6 +29,4 @@ const getNextIdPost = () => {
   return id_next;
 };
 
-
-
-module.exports = {createPost}
+module.exports = { createPost };
