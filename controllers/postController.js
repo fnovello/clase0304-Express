@@ -1,3 +1,4 @@
+const req = require("express/lib/request");
 const rs = require("../service/readWrite");
 
 const createPost = (req, res) => {
@@ -24,7 +25,6 @@ const createPost = (req, res) => {
 const getNextIdPost = () => {
   const all_posts = JSON.parse(rs.getData());
   const last_post = all_posts[all_posts.length - 1];
-  console.log("last_post: ", last_post);
   const id_next = last_post.id + 1;
   return id_next;
 };

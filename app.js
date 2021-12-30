@@ -4,11 +4,15 @@ const path = require("path");
 const postRouter = require("./routes/post-routes");
 
 const errorAppMiddleware = require("./middleware/errorAppMiddleware");
+const  { notFoundMiddleware } = require('./middleware/notFoundMiddleware')
+
 const {
   registroDev,
   registroArchivo,
 } = require("./middleware/registroMiddleware");
+
 const { appTimestampMiddleware } = require("./middleware/appMiddleware");
+
 const port = 3000;
 
 app.use(express.static(path.join(__dirname, "public")));
@@ -25,7 +29,6 @@ app.set("views", "views");
 app.set("view engine", "ejs");
 
 app.get("/index", (req, res) => {
-  console.log("estoy en el metodo get ");
   res.render("index", {
     titulo: "Index",
     nombres: ["franco", "matias", "jose"],
@@ -71,11 +74,7 @@ app
 
 app.get("/callbacks", [callback0, callback1, callback2]);
 
-app.all("*", function (req, res, next) {
-  // console.log('err: ', err.stack);
-  console.log("---------ERROR-------");
-  res.status(404).json({ message: "La ruta no existe " + req.originalUrl });
-});
+app.all('*',notFoundMiddleware);
 
 app.use(errorAppMiddleware);
 

@@ -1,7 +1,5 @@
 const errorAppMiddleware = function (err, req, res, next) {
-  console.log("err: ", err.stack);
-  console.log("err: ", err.message);
-
+  
   err.statusCode = err.statusCode || 500;
   err.status = err.status || "error";
 
@@ -20,8 +18,8 @@ const errorAppMiddleware = function (err, req, res, next) {
       stack: err.stack,
     });
   }
-  console.log("---------ERROR-------");
-  res.status(500).send("Se rompio el servidor");
+  // console.log("---------ERROR-------");
+  // res.status(500).send("Se rompio el servidor");
 };
 
 module.exports = errorAppMiddleware;
