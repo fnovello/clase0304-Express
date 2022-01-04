@@ -1,26 +1,20 @@
 # Modelo proyecto express
 
 
-## Tarea 
-
-A modo de ejemplo se encuentra la funcionalidad de agregar un post usando el verbo http POST, el metodo se llama "createPost", y recibe por body los parametros.
-
+## CRUD de usuario 
 ```
-{
-    "userId" : 1,
-    "title" : "soy el titulo",
-    "body" : "soy el body del post "
-}
+Verbos http: GET /users 
+Verbos http: GET /user/:id 
+Verbos http: POST /user 
+Verbos http: PUT /user 
+Verbos http: DELETE /user:id 
 ```
 
--En el js routes/post-routes.js se encuentran dos endpoints usando el verbo http GET, uno se llama "/post/:id" el cual se debe que crear la funcionalidad para que devuelva un post de acuerdo al id que le enviamos desde postman por parametro, si no se encuentra el post, retornar un mensaje con la situacion
+## Archivo script-db.sql
+-Script crear modelo Usuario - Post 
 
--Ademas implementar el otro enpoint por GET "/post" que retorna todos los posts, que se encuentran en "/data/posts.json".
-
-Las funcionalidades deben estar en el controlador "/controllers/postController.js".
-
-
-
+## Ejecutar el proyecto
+- Crear archivo de configuracion del proyecto .env (se deja .env.example a modo de ejemplo) 
 - Para correr el proyecto, ejecutar
 ```
 >npm i 
