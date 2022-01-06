@@ -2,12 +2,32 @@ const express = require("express");
 const { postRouteMiddleware } = require("../middleware/postRouteMiddleware");
 const postRouter = express.Router();
 const postController = require("../controllers/postController");
+const postSeqController = require("../controllers/postSeqController");
 const {
   appRoutePostTimestampMiddleware,
 } = require("../middleware/appMiddleware");
 
 postRouter.use(postRouteMiddleware);
 
+
+
+
+
+/**SEQUELIZE  */
+postRouter.post("/api/post", postSeqController.createPost);
+postRouter.get("/api/posts", postSeqController.getPostAll);
+postRouter.get("/api/post/:id", postSeqController.getPostByid);
+postRouter.get("/api/post/:id/user", postSeqController.getPostUserById);
+// userRouter.put("/api/user", userSeqController.updateUser);
+// userRouter.delete("/api/user", userSeqController.deleteUser);
+
+
+
+
+
+
+
+/**SQL  */
 /**Obtener un post por id de post */
 postRouter.get("/post/:id", (req, res, next) => {
   // return next(new AppError("Ha ocurrido un error 2", 500));
