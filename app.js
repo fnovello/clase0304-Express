@@ -17,8 +17,6 @@ const {
 
 const { appTimestampMiddleware } = require("./middleware/appMiddleware");
 
-const sequelize = require('./database/sequelizeConnection');
-
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
