@@ -21,33 +21,35 @@ const createPost = async (req, res) => {
 
   const post = await Post.create(data);
   res.json({ status: http.StatusCodes.OK, data: post });
- 
 };
 
-const getPostUserById = async (req,res) => {
-    const {id} = req.params;
+const getPostUserById = async (req, res) => {
+  const { id } = req.params;
 
-    /*EAGER*/ 
-    const result = await Post.findOne({
-        where:{
-            id:id
-        },
-        include:User
-    })
-    res.json({result});
+  /*EAGER*/
+  const result = await Post.findOne({
+    where: {
+      id: id,
+    },
+    include: User,
+  });
+  res.json({ result });
 
-    /*LAZY*/ 
-    // const post = await Post.findByPk(id);
-    // const user = await post.getUser();
+  /*LAZY*/
+  // const post = await Post.findByPk(id);
+  // const user = await post.getUser();
 
-    // res.json({post,user});
+  // res.json({post,user});
+};
 
-}
-
+const updateUser = () => {};
+const deleteUser = () => {};
 
 module.exports = {
   getPostAll,
   getPostByid,
   createPost,
-  getPostUserById
+  getPostUserById,
+  updateUser,
+  deleteUser,
 };

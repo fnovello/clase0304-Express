@@ -8,15 +8,17 @@ const {
 const userController = require("../controllers/userController");
 const userSeqController = require("../controllers/userSeqController");
 
+/**Sequelize */
 userRouter.post("/api/user", userSeqController.createUser);
 userRouter.get("/api/users", userSeqController.getUserAll);
 userRouter.get("/api/user/:id", userSeqController.getUserByid);
 userRouter.get("/api/user/:id/posts", userSeqController.getPostsUserById);
-userRouter.get("/api/useresta", userSeqController.getEstadistica);
+userRouter.get("/api/usesr/count/posts", userSeqController.getEstadistica);
 // userRouter.put("/api/user", userSeqController.updateUser);
 // userRouter.delete("/api/user", userSeqController.deleteUser);
 
 
+/**SQL */
 userRouter.get("/users", userController.getUserAll);
 userRouter.get("/user/:id", userController.getUserByid);
 userRouter.post("/user", userController.createUser);

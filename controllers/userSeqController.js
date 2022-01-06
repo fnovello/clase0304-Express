@@ -62,10 +62,13 @@ const getPostsUserById = async (req, res) => {
 
 const getEstadistica = async (req, res) => {
   const result = await sequelize.query(
-    `select u.iduser,u.username, count(*) as 'cant_posts'
-              from user u join post p 
-              on u.iduser = p.iduser
-              group by u.iduser`,
+    `SELECT 
+        u.iduser, u.username, COUNT(*) AS 'cant_posts'
+    FROM
+        user u
+            JOIN
+        post p ON u.iduser = p.iduser
+    GROUP BY u.iduser`,
     {
       type: QueryTypes.SELECT,
     }
