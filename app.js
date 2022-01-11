@@ -11,7 +11,7 @@ const authRouter = require("./routes/auth-routes");
 const errorAppMiddleware = require("./middleware/errorAppMiddleware");
 const { notFoundMiddleware } = require("./middleware/notFoundMiddleware");
 // const authMiddleware =  require("./middleware/authMiddleware");
-const { authRoutesMiddleware } =  require("./middleware/authMiddleware");
+const { authRoutesMiddleware } = require("./middleware/authMiddleware");
 const {
   registroDev,
   registroArchivo,
@@ -28,8 +28,8 @@ app.use([registroDev, registroArchivo]);
 app.use(appTimestampMiddleware);
 
 app.use(authRouter);
-app.use(authRoutesMiddleware,postRouter);
-app.use(authRoutesMiddleware,userRouter);
+app.use(authRoutesMiddleware, postRouter);
+app.use(authRoutesMiddleware, userRouter);
 
 app.set("views", "views");
 app.set("view engine", "ejs");
