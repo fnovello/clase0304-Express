@@ -6,10 +6,12 @@ const port = process.env.APP_PORT;
 const path = require("path");
 const postRouter = require("./routes/post-routes");
 const userRouter = require("./routes/user-routes");
+const authRouter = require("./routes/auth-routes");
 
 const errorAppMiddleware = require("./middleware/errorAppMiddleware");
 const { notFoundMiddleware } = require("./middleware/notFoundMiddleware");
-
+// const authMiddleware =  require("./middleware/authMiddleware");
+const { authRoutesMiddleware } =  require("./middleware/authMiddleware");
 const {
   registroDev,
   registroArchivo,
@@ -25,8 +27,9 @@ app.use([registroDev, registroArchivo]);
 
 app.use(appTimestampMiddleware);
 
-app.use(postRouter);
-app.use(userRouter);
+app.use(authRouter);
+app.use(authRoutesMiddleware,postRouter);
+app.use(authRoutesMiddleware,userRouter);
 
 app.set("views", "views");
 app.set("view engine", "ejs");
