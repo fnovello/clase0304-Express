@@ -49,3 +49,8 @@ Verbo http: DELETE  /user
 - Implementar los metodos para actualizar y borrar un usuario.
 - Implementar los metodos para actualizar y borrar un post.
 - Generar una respuesta tipo json para la salida con el resultado de las operaciones, y con respecto al UPDATE, por parametro se debera recibir el atributo a actualizar.
+
+## Branch 07_seguridad 
+- Implementacion de autenticacion con hash de contraseña implementando bcrypt y json web token (jwt)
+
+
